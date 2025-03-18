@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+     .login-btn {
+                background-color: #f74922;
+                color: white;
+                border-radius: 20px;
+                padding: 8px 20px;
+            font-size: 20px;
+           
+            }
+            .login-btn:hover {
+                background-color: #e03314;
+                color: rgb(36, 36, 46);
+                animation: btn .75s ease-in-out infinite;
+                box-shadow: 4px 4px 4px #941600a9;
+                
+            }
+            @keyframes btn{
+                0% {  transform: translateY(-3px); }
+                30%{  transform: translateY(0); }
+                60%{  transform: translateY(2px);}
+                100% {  transform:translateY(-3px)}
+                
+            }
+    .form-div{
+
+background:linear-gradient(135deg, rgba(0, 0, 0, 0.3) ,rgba(0, 0, 0, 0.3)), url("{% static 'img/background.png' %}") ;
+background-repeat: no-repeat;
+background-position: fixed;
+padding-top: 60px;
+padding-bottom: 750px;
+background-size: cover;
+
+color: white;
+
+}
+.card {
+    transition: transform 0.3s ease-in-out;
+}
+.card:hover {
+    transform: scale(1.15);
+    z-index: 2;
+}
+.card-img-top{
+transition:  transform .5s ease-out;
+}
+.card-img-top:hover{
+    transform:scale(1.4);
+    z-index: 2;
+}
+
+</style>
+<div class="form-div">
+<div class="container-fluid text-center " style="padding:20px 20px">
+<h2 >Book Rooms </h2>
+<!-- <form method="GET" class="sign-form text-center">
+    <input class="form-control" type="date" name="check_in" required>
+    <input class="form-control" type="date" name="check_out" required>
+    <input class="form-control" type="number" name="guests" min="1" required> -->
+    <!-- <button class="btn login-btn" type="submit">Check Availability</button> -->
+<!-- </form> -->
+<!-- {% for room in rooms %}
+<div>
+    <table class="table " style="border: 5px; box-shadow: 3px 3px 3px rgba(202, 201, 201, 0.8);">
+    <tr>
+        <th>Image</th>
+        <th>Room Type</th>
+        <th> Price</th>
+        <th>Book Here</th>
+    </tr>
+    <tr>
+        <td><img src="{{ room.image.url }}" style="height: 200px; max-width:500px;height: auto;border-radius: 5px;"></td>
+        <td> <p>{{ room.room_type }}<p></td>
+        <td><p>Price: ₹{{ room.price_per_night }}/night</p></td>
+        <td><a class="btn login-btn" href="{% url 'book_room' room.id %}">Book Now</a></td>
+    </tr>
+    </table>
+</div>
+{% empty %}
+<p>No rooms available.</p>
+{% endfor %}
+</div> -->
+  <h3 class="mt-4">Available Rooms</h3>
+        <div >
+            <table id="room" class="table border rounded mx-auto w-75"><tr><th>image</th><th>room type</th><th>price per night</th><th>total rooms</th><th>book here</th></tr>
+                
+            {% for room in rooms %}
+                <!-- <div class="  col-3 card mt-3 mx-3  shadow-lg " >
+                    <img src="{{ room.image.url }}" class="card-img-top" alt="{{ hotel.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ room.room_type }}</h5>
+                        <p class="card-text">Price: ₹{{ room.price_per_night }}/night</p>
+                        <a class="btn btn-danger" href="{% url 'book_room' room.id %}"  >Book Now</a>  
+               
+                    </div>
+                </div> -->
+                   
+                    <tr><td class="col-4"> <img src="{{ room.image.url }}" class="card-img-top w-75 "></td><td>{{ room.room_type }}</td><td>{{ room.price_per_night }}</td><td>{{ room.total_rooms }}</td><td><a class="btn login-btn" href="{% url 'book_room' room.id %}"  >Book Now</a>  </td></tr>
+                    
+                   
+                   
+               
+            
+            {% empty %}
+                <p>No rooms found.</p>
+            {% endfor %}
+        </table>
+        </div>
+    </div>
+      
+</div>
+
+{% endblock %}

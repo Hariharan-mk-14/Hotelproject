@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<!-- <div class="mx-auto my-3 p-4 bg-light rounded shadow  text-center">
+<h2 >Pay Here{{ room.total_price|floatformat:2 }}</h2>
+<button id="rzp-button" class="btn login-btn"  >Pay Now</button> 
+<a class="btn login-btn" href="https://pay.google.com/about/"><i class="bi bi-google">pay</i></a>
+<a class="btn login-btn" href="https://www.phonepe.com/business-solutions/payment-link/">PhonePe</a>
+ -->
+
+<!-- </div> -->
+<!-- <div class="mx-auto my-3 p-4 bg-light border rounded text-center w-25">
+   
+<form action="" method="post">
+    {% csrf_token %}
+    <label for="amount"> Amount:</label>
+    <input type="number" name="amount" id="amount" class="form-control">
+    <label for="currency"> Currency:</label>
+    <input type="text" name="currency" id="currency" class="form-control">
+    <button type="submit" class="btn login-btn"> pay</button>
+</form>
+</div> -->
+
+<!-- <script> 
+    
+ 
+var options = {
+    "key": "{{ stripe_key }}",
+    "amount": "{{ payment_data.amount }}",
+    "currency": "INR",
+    "order_id": "{{ payment_data.id }}",
+//     "payment_method":pm_card_visa, 
+//    "payment_method_types[]":card,
+    "handler": function (response) {
+        alert("Payment Successful! Payment ID: " + response.stripe_payment_id);
+        window.location.href = "/payment-success/";
+    }
+};
+var rzp1 = new stripe(options);
+document.getElementById('rzp-button').onclick = function (e) {
+    rzp1.open();
+    e.preventDefault();
+};
+</script> -->
+<script src="https://js.stripe.com/v3/"></script>
+<div class="mx-auto my-3 p-4 bg-light border shadow rounded text-center">
+<button class="btn login-btn" id="checkout-button">pay via card</button>
+</div>
+<script>
+    var stripe = Stripe('pk_test_51R28KVGfuuE6l9MyHxjxLI3effAjMiYqOTBERuM6PLMSi2hIfHTgX6V2iq2NmwrDFYJO7ypEp7eQJc2XmgaygKvr00svhL7fin');
+    var checkoutButton = document.getElementById('checkout-button');
+
+    checkoutButton.addEventListener('click', function () {
+        stripe.redirectToCheckout({
+            sessionId: '{{ session_id }}'
+        }).then(function (result) {
+            if (result.error) {
+                alert(result.error.message);
+            }
+        });
+    });
+</script>
+<!-- <script src="https://api.stripe.com/v1/payment_intents"></script>  -->
+
+{% endblock %}

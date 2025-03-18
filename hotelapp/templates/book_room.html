@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br><br>
+<div class="container mt-5">
+<h2 class="text-center">Book {{ room.room_type }} Room - ₹{{ room.price_per_night }}/night {{ book.check_in }}{{ book.check_out }}</h2>
+<form method="POST" class="mx-auto my-5 p-4 text-center search  rounded w-50">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn login-btn">Book Now</button>
+</form>
+
+{% for message in messages %}
+<div class="mx-auto my-3 p-4 shadow rounded d-flex justify-content-center">{{ message }}</div>
+{% endfor %}
+</div>
+
+<style>
+    .search{
+    
+    
+    background-color: rgba(175, 175, 175, 0.6);
+    box-shadow: 3px 3px 3px rgba(24, 24, 24, 0.411);
+     
+}
+</style>
+{% endblock %}

@@ -1,0 +1,86 @@
+ {% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .form-div{
+
+background:linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url("{% static 'img/background.png' %}") ;
+background-size:cover;
+background-repeat: no-repeat;
+color: white;
+
+padding-bottom: 10%;
+padding-top: 10%;
+}
+@media (min-width: 400px) {
+  .form-div{padding-bottom: 70%;}
+}
+.search{
+    
+    
+    background-color: rgba(32, 33, 34, 0.6);
+    box-shadow: 3px 3px 3px rgba(240, 248, 255, 0.411);
+     
+}
+
+
+</style>
+
+<div class="form-div  ">
+    <div class="container-fluid py-5 d-flex flex-column justify-content-center align-item-center text-center ">
+        <div class="mx-auto my-5 p-4 text-center search  rounded" >
+        
+        <form method="GET" >
+            <h2 class="text-center">Search for Rooms</h2>
+            <div class="col-lg-6 w-100 px-1 " >
+                {{ form.check_in.label_tag }}
+                {{ form.check_in }}
+            </div>
+            <div class="col-lg-6 w-100 px-1" >
+                {{ form.check_out.label_tag }}
+                {{ form.check_out }}
+            </div>
+            <div class="col-lg-6 w-100 px-1">
+                {{ form.guests.label_tag }}
+                {{ form.guests }}
+            </div>
+            
+            <div class=" my-3 " >
+                <button type="submit" class="btn login-btn w-100 ">Search</button>
+            </div>
+        </form>
+    </div>
+
+       <!-- {% if form.is_valid %}
+           <h3 class="mt-4">Available Rooms</h3>
+            {% for room in rooms %}
+                <div class="card mt-3 w-75 mx-auto">
+                    <img src="{{ room.image.url }}" class="card-img-top" >
+                    <div class="card-body">
+                        <h5 class="card-title">{{ room.room_type }}</h5>
+                        <p class="card-text">Price: ₹{{ room.price_per_night }}/night</p>
+                        <a class="btn login-btn" href="{% url 'book_room' room.id %}">Book Now</a>                       
+                        
+                    </div>
+                </div>
+            {% empty %}
+                <p>No hotels found in this location.</p>
+            {% endfor %} 
+            {% endif %}
+     -->
+    </div> 
+    {% for message in messages %}
+    <div class="mx-auto my-3 p-4 shadow bg-info rounded d-flex justify-content-center">
+    {{ message }}
+    </div>
+{% endfor %}
+</div>
+
+
+{% endblock %} 
+{% load static %}
+
+
+
+
+    

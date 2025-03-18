@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .container-fluid{
+        background:linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url("{% static 'img/background.png' %}") ;
+background-size:cover;
+background-repeat: no-repeat;
+
+    }
+</style>
+<div class="container-fluid" style="padding: 11%;" >
+    <div class="d-flex justify-content-center align-item-center text-center">
+        <div class="border mx-auto my-3  bg-light shadow-lg br-3 rounded" style="padding: 10%;">
+            <h1> Contact Details</h1>
+            <table class="table border border-secondary ">
+                <tr>
+                    <th class="bg-primary">PhoneNo:</th><td>+0452 232 23</td>
+                </tr>
+                <tr>
+                    <th class="bg-primary">Email:</th><td>hotelbooking@gmail.com</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

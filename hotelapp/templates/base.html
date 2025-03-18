@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hotel Booking</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        .login-btn {
+                background-color: #f74922;
+                color: white;
+                border-radius: 20px;
+                padding: 8px 20px;
+            font-size: 20px;
+           
+            }
+            .login-btn:hover {
+                background-color: #e03314;
+                color: rgb(36, 36, 46);
+                animation: btn .75s ease-in-out infinite;
+                box-shadow: 4px 4px 4px #941600a9;
+                
+            }
+            @keyframes btn{
+                0% {  transform: translateY(-3px); }
+                30%{  transform: translateY(0); }
+                60%{  transform: translateY(2px);}
+                100% {  transform:translateY(-3px)}
+                
+            }
+            .card {
+    transition: transform 0.3s ease-in-out;
+}
+.card:hover {
+    transform: scale(1.15);
+    z-index: 2;
+}
+.card-img-top{
+transition:  transform .5s ease-out;
+}
+.card-img-top:hover{
+    transform:scale(1.4);
+    z-index: 2;
+}
+
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+             document.getElementById("checkin").setAttribute("min", today); 
+             document.getElementById("checkout").setAttribute("min", today); 
+           }); 
+        </script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body style="background-color: rgb(233, 255, 248);">
+
+<!-- Navbar -->
+<nav id="nav" class="navbar navbar-expand-lg bg-danger navbar-dark fixed-top  px-4" >
+    <a class="navbar-brand" href="#">HotelBooking</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse text-center" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link " href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'rooms' %}">Rooms</a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+            </li>
+            {% if user.is_authenticated %}
+            {% if user.is_admin %}
+            <li class="nav-item"><a href="{% url 'admindashboard' %}" class="nav-link"><i class="bi bi-person-circle"></i></a></li>
+            {% else %}
+            <li class="nav-item"><a href="{% url 'userprofile' %}" class="nav-link"><i class="bi bi-person-circle" ></i></a></li>
+            {% endif %}
+            {% else %}
+           
+            <li class="nav-item ms-2">
+                <a href="{% url 'userlogin' %}" class="btn login-btn ">Login</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+  {% block content %}
+
+  {% endblock %}
+
+
+</body>
+</html>     
