@@ -53,7 +53,7 @@ def user_login(request):
 @login_required
 def user_profile(request):
     bookings=Booking.objects.filter(user_id=request.user.id).all()
-    return render(request, "userprofile.html",{"bookings":bookings})
+    return render(request,"admindashboard.html",{'users':users,'bookings':bookings,'rooms':rooms})
 def cancel_room(request):
     bookings=Booking.objects.filter(user_id=request.user.id).values_list("status",flat=True)
     if bookings=="Confirmed" :
