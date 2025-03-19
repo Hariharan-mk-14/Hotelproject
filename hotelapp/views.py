@@ -51,10 +51,10 @@ def user_login(request):
     
     return render(request, "userlogin.html", {"form": form})
 @login_required
-def user_profile(request):
+# def user_profile(request):
     
-    bookings=Booking.objects.filter(user_id=request.user.id).all()
-    return render(request, "userprofile.html",{"bookings":bookings})
+#     bookings=Booking.objects.filter(user_id=request.user.id).all()
+#     return render(request, "userprofile.html",{"bookings":bookings})
 # def cancel_room(request):
 #     bookings=Booking.objects.filter(user_id=request.user.id).values_list("status",flat=True)
 #     if bookings=="Confirmed" :
@@ -70,20 +70,20 @@ def user_logout(request):
     return redirect('home')
 @login_required
 def admin_dashboard(request):
-    if not request.user.is_admin:
-        return redirect('home')
+    # if not request.user.is_admin:
+    #     return redirect('home')
     users = User.objects.all().order_by('-last_login')
     bookings= Booking.objects.all()
     rooms= Room.objects.all()
     return render(request,"admindashboard.html",{'users':users,'bookings':bookings,'rooms':rooms})
-@login_required
-def delete_user(request,user_id):
-    if not request.user.is_admin:
-        return redirect('admindashboard')
-    user=User.objects.filter(id=user_id)
-    if user!= request.user:
-        user.delete()
-    return redirect('admindashboard')
+# @login_required
+# def delete_user(request,user_id):
+#     if not request.user.is_admin:
+#         return redirect('admindashboard')
+#     user=User.objects.filter(id=user_id)
+#     if user!= request.user:
+#         user.delete()
+#     return redirect('admindashboard')
 
 # @login_required
 # def booking(request):
