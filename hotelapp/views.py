@@ -52,7 +52,9 @@ def user_login(request):
     return render(request, "userlogin.html", {"form": form})
 @login_required
 def user_profile(request):
-    bookings=Booking.objects.filter(user_id=request.user.id).all()
+    users = User.objects.all().order_by('-last_login')
+    bookings= Booking.objects.all()
+    rooms= Room.objects.all()
     return render(request,"admindashboard.html",{'users':users,'bookings':bookings,'rooms':rooms})
 def cancel_room(request):
     bookings=Booking.objects.filter(user_id=request.user.id).values_list("status",flat=True)
