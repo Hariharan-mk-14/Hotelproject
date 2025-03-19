@@ -51,27 +51,26 @@ def user_login(request):
     
     return render(request, "userlogin.html", {"form": form})
 @login_required
-# def user_profile(request):
-    
-#     bookings=Booking.objects.filter(user_id=request.user.id).all()
-#     return render(request, "userprofile.html",{"bookings":bookings})
-# def cancel_room(request):
-#     bookings=Booking.objects.filter(user_id=request.user.id).values_list("status",flat=True)
-#     if bookings=="Confirmed" :
-#         messages.success(request,"success")
-#     else:
+def user_profile(request):
+    bookings=Booking.objects.filter(user_id=request.user.id).all()
+    return render(request, "userprofile.html",{"bookings":bookings})
+def cancel_room(request):
+    bookings=Booking.objects.filter(user_id=request.user.id).values_list("status",flat=True)
+    if bookings=="Confirmed" :
+        messages.success(request,"success")
+    else:
         
-#         bookings.save(update_fields="status")
-#         messages.success(request,"your has accepted")
-#     return redirect('userprofile')   
+        bookings.save(update_fields="status")
+        messages.success(request,"your has accepted")
+    return redirect('userprofile')   
 
 def user_logout(request):
     logout(request)
     return redirect('home')
 @login_required
 def admin_dashboard(request):
-    # if not request.user.is_admin:
-    #     return redirect('home')
+    if not request.user.is_admin:
+        return redirect('home')
     users = User.objects.all().order_by('-last_login')
     bookings= Booking.objects.all()
     rooms= Room.objects.all()
