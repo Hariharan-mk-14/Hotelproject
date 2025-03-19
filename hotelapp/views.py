@@ -76,14 +76,14 @@ def admin_dashboard(request):
     bookings= Booking.objects.all()
     rooms= Room.objects.all()
     return render(request,"admindashboard.html",{'users':users,'bookings':bookings,'rooms':rooms})
-# @login_required
-# def delete_user(request,user_id):
-#     if not request.user.is_admin:
-#         return redirect('admindashboard')
-#     user=User.objects.filter(id=user_id)
-#     if user!= request.user:
-#         user.delete()
-#     return redirect('admindashboard')
+@login_required
+def delete_user(request,user_id):
+    if not request.user.is_admin:
+        return redirect('admindashboard')
+    user=User.objects.filter(id=user_id)
+    if user!= request.user:
+        user.delete()
+        return redirect('admindashboard')
 
 # @login_required
 # def booking(request):
