@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-1jt==ofex-6doe&-&#oerf+qp(ta5&964s$u8tmy50z2s!wau1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["localhost","hotelproject-2.onrender.com"]
+ALLOWED_HOSTS = ["localhost","hotelproject.onrender.com"]
 
 
 # Application definition
@@ -55,7 +55,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+
 
 ROOT_URLCONF = 'hotelproject.urls'
 
@@ -134,8 +137,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'hotelapp/static')
 ]
-STATIC_ROOT=os.path.join(BASE_DIR,'assets')
-
+# STATIC_ROOT=os.path.join(BASE_DIR,'assets')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 
@@ -168,3 +171,11 @@ LOGOUT_REDIRECT_URL = '/login/'  # Redirect after logout
 # Razorpay 
 STRIPE_PUBLISHABLE_KEY = "pk_test_51R28KVGfuuE6l9MyHxjxLI3effAjMiYqOTBERuM6PLMSi2hIfHTgX6V2iq2NmwrDFYJO7ypEp7eQJc2XmgaygKvr00svhL7fin"
 STRIPE_SECRET_KEY = "sk_test_51R28KVGfuuE6l9MyQc76QnfjMn15rXrTWWKeEHzHTcN0F00rd34j0q6xm3OgF8OVzGUIbUQ0z8JKWo0gY3w2bSrF00msnzmZS3"
+
+
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.config(default='postgresql://hotelprojectdb_user:u3CxYkqlj308hEVRCxFykXnovgwAeqii@dpg-cvd969jtq21c73aaegu0-a/hotelprojectdb')
+
+}
