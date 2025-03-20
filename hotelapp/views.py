@@ -238,7 +238,7 @@ def book_room(request, room_id):
 def booking_success(request):
     return render(request, "booking_success.html")
 def update_rooms(request):
-    if request.user.is_admin:
+    # if request.user.is_admin:
         if request.method=='POST':
             form = RoomForm(request.POST,request.FILES)
             if form.is_valid():
