@@ -39,7 +39,7 @@ function toggle(){
                 <div class="card-body"><h5 class="card-title">{{ user.username }}</h5>
                 <p class="card-text"><strong>Email:</strong>{{ user.email }}</p>
             <p class="card-text"><strong>Last Login:</strong>{{ user.last_login }}</p>
-        <a href="{% url 'delete_user' user.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete User</a></div>
+        </div>
             </div>
         </div>
 {% endfor %}
