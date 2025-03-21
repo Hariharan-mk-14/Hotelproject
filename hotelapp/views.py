@@ -52,10 +52,8 @@ def user_login(request):
     return render(request, "userlogin.html", {"form": form})
 @login_required
 def user_profile(request):
-    users = User.objects.all().order_by('-last_login')
-    bookings= Booking.objects.all()
-    rooms= Room.objects.all()
-    return render(request,"admindashboard.html",{'users':users,'bookings':bookings,'rooms':rooms})
+    bookings=Booking.objects.filter(user_id=request.user.id).all()
+    return render(request, "userprofile.html",{"bookings":bookings})
 def cancel_room(request):
     bookings=Booking.objects.filter(user_id=request.user.id).values_list("status",flat=True)
     if bookings=="Confirmed" :
@@ -238,7 +236,7 @@ def book_room(request, room_id):
 def booking_success(request):
     return render(request, "booking_success.html")
 def update_rooms(request):
-    # if request.user.is_admin:
+     if request.user.is_admin:
         if request.method=='POST':
             form = RoomForm(request.POST,request.FILES)
             if form.is_valid():
