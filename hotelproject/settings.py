@@ -160,7 +160,7 @@ EMAIL_USE_SSL=False
 #OPTIONAL:you can specify a default "from "email for your project
 EMAIL_HOST_USER='noreplyhotelbooking2@gmail.com'
 DEFAULT_FROM_EMAIL ='noreplyhotelbooking2@localhost'
-EMAIL_HOST_PASSWORD='cnix bqgu hdwz xraf'
+EMAIL_HOST_PASSWORD='nett ntvk ykub gbhb'
 #EMAIL_USE_SSL=False
 
 LOGIN_URL = '/login/'  # Redirect unauthenticated users to login page
