@@ -124,7 +124,7 @@ def password_reset(request):
             send_mail(
                 'Password Reset OTP',
                 f'Your OTP is: {otp}',
-                'hariharamani2004@gmail.com',
+                'noreplyhotelbooking2@gmail.com',
                 [email],
 
             )
