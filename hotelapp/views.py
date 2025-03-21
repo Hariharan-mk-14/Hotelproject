@@ -270,8 +270,8 @@ def stripe_payment(request ,room_id):
         'quantity': 1,
         }],
         mode='payment',
-        success_url='http://localhost:8000/paymentsuccess/',
-        cancel_url='http://localhost:8000/paymentfailed/',
+        success_url='https://hotelproject-rtry.onrender.com/paymentsuccess/',
+        cancel_url='https://hotelproject-rtry.onrender.com/paymentfailed/',
     )
     
     return render(request, 'stripe_payment.html', {'session_id': session.id,'price':price})
