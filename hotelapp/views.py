@@ -69,12 +69,11 @@ def user_logout(request):
     return redirect('home')
 @login_required
 def admin_dashboard(request):
-    if not request.user.is_admin:
-        return redirect('home')
-    users = User.objects.all().order_by('-last_login')
-    bookings= Booking.objects.all()
-    rooms= Room.objects.all()
-    return render(request,"admindashboard.html",{'users':users,'bookings':bookings,'rooms':rooms})
+    if request.user.username == "ADMIN":
+        users = User.objects.all().order_by('-last_login')
+        bookings= Booking.objects.all()
+        rooms= Room.objects.all()
+        return render(request,"admindashboard.html",{'users':users,'bookings':bookings,'rooms':rooms})
 @login_required
 def delete_user(request,user_id):
     if not request.user.is_admin:
@@ -236,7 +235,7 @@ def book_room(request, room_id):
 def booking_success(request):
     return render(request, "booking_success.html")
 def update_rooms(request):
-     if request.user.is_admin:
+     if request.user.username == "ADMIN":
         if request.method=='POST':
             form = RoomForm(request.POST,request.FILES)
             if form.is_valid():
