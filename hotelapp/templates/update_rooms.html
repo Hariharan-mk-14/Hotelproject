@@ -3,10 +3,12 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <br><br>
+<div class="container-fluid">
 <h1 style="color: #333;text-align: center;margin-top: 20px;">Update Rooms</h1>
-<form method="post" enctype="multipart/form-data" style=" max-width: 800px; margin-left: 500px; margin-top:200px;padding: 20px;background-color: #db8dff77;border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+<form method="post" enctype="multipart/form-data" class="d-flex justify-content-center" style=" max-width: 800px; margin-left: 500px; margin-top:200px;padding: 20px;background-color: #db8dff77;border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
     {% csrf_token %}
     {{ form|crispy }}
     <button type="submit" class="btn login-btn">Save</button>
 </form>
+    </div>
 {% endblock %}
